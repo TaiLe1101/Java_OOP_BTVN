@@ -1,8 +1,7 @@
 package javacb.btvn.kethua.bt1;
 
 public class TapChi extends TaiLieu {
-    private int soPhatHanh;
-    private int thangPhatHanh;
+    private int soPhatHanh, thangPhatHanh;
 
     public TapChi() {
         super();

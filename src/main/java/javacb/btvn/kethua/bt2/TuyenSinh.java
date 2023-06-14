@@ -1,60 +1,74 @@
 package javacb.btvn.kethua.bt2;
 
-class TuyenSinh {
-    private ThiSinh[] danhSachThiSinh;
-    private int soLuongThiSinh;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-    public TuyenSinh(int maxSize) {
-        danhSachThiSinh = new ThiSinh[maxSize];
-        soLuongThiSinh = 0;
+public class TuyenSinh {
+    private ArrayList<ThiSinh> danhSachThiSinh;
+
+    public TuyenSinh() {
+        danhSachThiSinh = new ArrayList<ThiSinh>();
     }
 
-    public void themMoiThiSinh(ThiSinh thiSinh) {
-        if (soLuongThiSinh < danhSachThiSinh.length) {
-            danhSachThiSinh[soLuongThiSinh] = thiSinh;
-            soLuongThiSinh++;
-            System.out.println("Them moi thi sinh thanh cong.");
-        } else {
-            System.out.println("Danh sach thi sinh da day, khong the them moi.");
-        }
+    public void themThiSinh() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Nhap so bao danh: ");
+        String soBaoDanh = sc.nextLine();
+
+        System.out.print("Nhap ho ten: ");
+        String hoTen = sc.nextLine();
+
+        System.out.print("Nhap dia chi: ");
+        String diaChi = sc.nextLine();
+
+        System.out.print("Nhap muc uu tien: ");
+        int mucUuTien = sc.nextInt();
+        sc.nextLine();
+
+        String khoiThi;
+        do {
+            System.out.print("Nhap khoi thi (A, B, C): ");
+            khoiThi = sc.nextLine();
+
+            ThiSinh thiSinh;
+            if (khoiThi.equalsIgnoreCase("A")) {
+                thiSinh = new ThiSinhKhoiA(soBaoDanh, hoTen, diaChi, mucUuTien);
+            } else if (khoiThi.equalsIgnoreCase("B")) {
+                thiSinh = new ThiSinhKhoiB(soBaoDanh, hoTen, diaChi, mucUuTien);
+            } else if (khoiThi.equalsIgnoreCase("C")) {
+                thiSinh = new ThiSinhKhoiC(soBaoDanh, hoTen, diaChi, mucUuTien);
+            } else {
+                System.out.println("Khoi thi khong hop le!");
+                continue;
+            }
+
+            danhSachThiSinh.add(thiSinh);
+            System.out.println("Them thanh cong");
+        } while (!khoiThi.equalsIgnoreCase("a") && !khoiThi.equalsIgnoreCase("b") && !khoiThi.equalsIgnoreCase("c"));
+
     }
 
     public void hienThiThongTin() {
-        for (int i = 0; i < soLuongThiSinh; i++) {
-            ThiSinh thiSinh = danhSachThiSinh[i];
+        for (ThiSinh thiSinh : danhSachThiSinh) {
+            System.out.println("-------------------------");
             System.out.println(thiSinh);
-            if (thiSinh instanceof ThiSinhKhoiA) {
-                ThiSinhKhoiA thiSinhKhoiA = (ThiSinhKhoiA) thiSinh;
-                System.out.println("Khoi thi: A");
-                System.out.println("Mon thi: " + String.join(", ", thiSinhKhoiA.getMonHoc()));
-            } else if (thiSinh instanceof ThiSinhKhoiB) {
-                ThiSinhKhoiB thiSinhKhoiB = (ThiSinhKhoiB) thiSinh;
-                System.out.println("Khoi thi: B");
-                System.out.println("Mon thi: " + String.join(", ", thiSinhKhoiB.getMonHoc()));
-            } else if (thiSinh instanceof ThiSinhKhoiC) {
-                ThiSinhKhoiC thiSinhKhoiC = (ThiSinhKhoiC) thiSinh;
-                System.out.println("Khoi thi: C");
-                System.out.println("Mon thi: " + String.join(", ", thiSinhKhoiC.getMonHoc()));
-            }
-            System.out.println("---------------------");
         }
     }
 
     public void timKiemTheoSoBaoDanh(String soBaoDanh) {
-        for (int i = 0; i < soLuongThiSinh; i++) {
-            ThiSinh thiSinh = danhSachThiSinh[i];
-            if (thiSinh.getSoBaoDanh().equals(soBaoDanh)) {
+        boolean tonTai = false;
+        for (ThiSinh thiSinh : danhSachThiSinh) {
+            if (thiSinh.getSoBaoDanh().equalsIgnoreCase(soBaoDanh)) {
+                System.out.println("-------------------------");
                 System.out.println(thiSinh);
-                if (thiSinh instanceof ThiSinhKhoiA) {
-                    System.out.println("Khoi thi: A");
-                } else if (thiSinh instanceof ThiSinhKhoiB) {
-                    System.out.println("Khoi thi: B");
-                } else if (thiSinh instanceof ThiSinhKhoiC) {
-                    System.out.println("Khoi thi: C");
-                }
-                return;
+                tonTai = true;
+                break;
             }
         }
-        System.out.println("Khong tim thay thi sinh co so bao danh " + soBaoDanh);
+
+        if (!tonTai) {
+            System.out.println("Khong tim thay thi sinh : " + soBaoDanh);
+        }
     }
 }

@@ -1,13 +1,19 @@
 package javacb.btvn.kethua.bt2;
 
-class ThiSinhKhoiB extends ThiSinh {
-    private static final String[] MON_HOC = { "Toan", "Hoa", "Sinh" };
+public class ThiSinhKhoiB extends ThiSinh {
 
-    public ThiSinhKhoiB(String hoTen, String diaChi, int mucUuTien) {
-        super(hoTen, diaChi, mucUuTien);
+    public ThiSinhKhoiB() {
+        super();
     }
 
-    public String[] getMonHoc() {
-        return MON_HOC;
+    public ThiSinhKhoiB(String soBaoDanh, String hoTen, String diaChi, int mucUuTien) {
+        super(soBaoDanh, hoTen, diaChi, mucUuTien);
+
     }
+
+    @Override
+    public String getKhoiThi() {
+        return "Khoi B: Toan, Hoa, Sinh";
+    }
+
 }

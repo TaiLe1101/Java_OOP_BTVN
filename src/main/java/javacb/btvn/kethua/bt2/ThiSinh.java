@@ -1,22 +1,18 @@
 package javacb.btvn.kethua.bt2;
 
-import java.util.UUID;
-
-public class ThiSinh {
-    private String soBaoDanh;
-    private String hoTen;
-    private String diaChi;
+public abstract class ThiSinh {
+    private String soBaoDanh, hoTen, diaChi;
     private int mucUuTien;
 
     public ThiSinh() {
-        this.soBaoDanh = "";
-        this.hoTen = "";
-        this.diaChi = "";
-        this.mucUuTien = 0;
+        soBaoDanh = "";
+        hoTen = "";
+        diaChi = "";
+
     }
 
-    public ThiSinh(String hoTen, String diaChi, int mucUuTien) {
-        this.soBaoDanh = UUID.randomUUID().toString();
+    public ThiSinh(String soBaoDanh, String hoTen, String diaChi, int mucUuTien) {
+        this.soBaoDanh = soBaoDanh;
         this.hoTen = hoTen;
         this.diaChi = diaChi;
         this.mucUuTien = mucUuTien;
@@ -24,6 +20,10 @@ public class ThiSinh {
 
     public String getSoBaoDanh() {
         return soBaoDanh;
+    }
+
+    public void setSoBaoDanh(String soBaoDanh) {
+        this.soBaoDanh = soBaoDanh;
     }
 
     public String getHoTen() {
@@ -50,12 +50,15 @@ public class ThiSinh {
         this.mucUuTien = mucUuTien;
     }
 
+    public abstract String getKhoiThi();
+
     @Override
     public String toString() {
-        return "So bao danh: " + soBaoDanh + "\n" +
-                "Ho ten: " + hoTen + "\n" +
-                "Dia chi: " + diaChi + "\n" +
-                "Muc uu tien: " + mucUuTien;
+        return "So bao danh: " + soBaoDanh +
+                "\nHo ten: " + hoTen +
+                "\nDia chi: " + diaChi +
+                "\nMuc uu tien: " + mucUuTien +
+                "\nKhoi thi: \n\t" + getKhoiThi();
     }
 
 }

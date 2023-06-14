@@ -1,20 +1,17 @@
 package javacb.btvn.kethua.bt1;
 
-import java.util.UUID;
-
 public class TaiLieu {
-    private String maTaiLieu;
-    private String tenNhaSanXuat;
+    private String maTaiLieu, tenNhaSanXuat;
     private int soBanPhatHanh;
 
     public TaiLieu() {
-        setMaTaiLieu("");
+        this.maTaiLieu = "";
         this.tenNhaSanXuat = "";
         this.soBanPhatHanh = 1;
     }
 
     public TaiLieu(String maTaiLieu, String tenNhaSanXuat, int soBanPhatHanh) {
-        setMaTaiLieu(maTaiLieu);
+        this.maTaiLieu = maTaiLieu;
         this.tenNhaSanXuat = tenNhaSanXuat;
         this.soBanPhatHanh = soBanPhatHanh;
     }
@@ -24,8 +21,8 @@ public class TaiLieu {
     }
 
     public void setMaTaiLieu(String maTaiLieu) {
-        UUID uuid = UUID.randomUUID();
-        this.maTaiLieu = uuid + "_" + maTaiLieu;
+
+        this.maTaiLieu = maTaiLieu;
     }
 
     public String getTenNhaSanXuat() {

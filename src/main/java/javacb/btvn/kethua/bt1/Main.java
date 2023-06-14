@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Main {
-    private static QuanLySach quanLySach = new QuanLySach(100);
+    private static QuanLySach quanLySach = new QuanLySach();
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -107,14 +107,7 @@ public class Main {
             case 1: {
                 Sach sach = new Sach();
 
-                System.out.print("Nhap ma sach: ");
-                sach.setMaTaiLieu(sc.nextLine());
-
-                System.out.print("Nhap so ban phat hanh: ");
-                sach.setSoBanPhatHanh(Integer.parseInt(sc.nextLine()));
-
-                System.out.print("Ten nha xuat ban: ");
-                sach.setTenNhaSanXuat(sc.nextLine());
+                nhapThongTinTaiLieu(sach);
 
                 System.out.print("Ten tac gia: ");
                 sach.setTenTacGia(sc.nextLine());
@@ -128,14 +121,7 @@ public class Main {
             case 2: {
                 TapChi tapChi = new TapChi();
 
-                System.out.print("Nhap ma sach: ");
-                tapChi.setMaTaiLieu(sc.nextLine());
-
-                System.out.print("Nhap so ban phat hanh: ");
-                tapChi.setSoBanPhatHanh(Integer.parseInt(sc.nextLine()));
-
-                System.out.print("Ten nha san xuat: ");
-                tapChi.setTenNhaSanXuat(sc.nextLine());
+                nhapThongTinTaiLieu(tapChi);
 
                 System.out.print("So phat hanh: ");
                 tapChi.setSoPhatHanh(Integer.parseInt(sc.nextLine()));
@@ -149,14 +135,7 @@ public class Main {
             case 3: {
                 Bao bao = new Bao();
 
-                System.out.print("Nhap ma sach: ");
-                bao.setMaTaiLieu(sc.nextLine());
-
-                System.out.print("Nhap so ban phat hanh: ");
-                bao.setSoBanPhatHanh(Integer.parseInt(sc.nextLine()));
-
-                System.out.print("Ten nha san xuat: ");
-                bao.setTenNhaSanXuat(sc.nextLine());
+                nhapThongTinTaiLieu(bao);
 
                 System.out.print("Nhap ngay (dd/MM/yyy): ");
                 String inputDate = sc.nextLine();
@@ -193,5 +172,13 @@ public class Main {
         System.out.println("\t3: Bao");
         System.out.println("\t4: Tro ve");
         System.out.print("\t\t -> Moi chon: ");
+    }
+
+    private static void nhapThongTinTaiLieu(TaiLieu taiLieu) {
+        System.out.print("Nhap so ban phat hanh: ");
+        taiLieu.setSoBanPhatHanh(Integer.parseInt(sc.nextLine()));
+
+        System.out.print("Ten nha xuat ban: ");
+        taiLieu.setTenNhaSanXuat(sc.nextLine());
     }
 }
